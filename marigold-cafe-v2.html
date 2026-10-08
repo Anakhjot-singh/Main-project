@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marigold Corner Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F6F2;--card:#FFFFFF;--ink:#0F3D2E;--soft:#4F6A5D;--green:#0F3D2E;--gold:#F2B632;--coral:#F26B4F;--chalk:#F6F8F3;--line:#CFE0D4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1612;--card:#13241D;--ink:#E8F0EA;--soft:#9DB3A6;--line:#26402F}}
+:root[data-theme="dark"]{--bg:#0B1612;--card:#13241D;--ink:#E8F0EA;--soft:#9DB3A6;--line:#26402F}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 Outfit,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{background:var(--green);color:var(--chalk);position:relative;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px;flex-wrap:wrap}
+.brand{font:400 26px 'Young Serif',Georgia,serif;text-decoration:none;color:var(--gold)}
+nav ul{display:flex;gap:24px;list-style:none;padding:0;align-items:center}
+nav a{text-decoration:none;font-weight:500}
+nav ul a:hover{color:var(--gold)}
+.btn{display:inline-block;background:var(--gold);color:#0F3D2E;font:600 17px Outfit,sans-serif;padding:14px 28px;border-radius:999px;border:0;text-decoration:none;cursor:pointer;box-shadow:0 6px 0 #B98A14;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(3px);box-shadow:0 3px 0 #B98A14}
+.btn.ghost{background:transparent;color:var(--chalk);border:2px solid var(--chalk);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:30px 0 110px}
+h1{font:400 clamp(44px,7.5vw,84px)/1 'Young Serif',Georgia,serif;margin-bottom:22px}
+h1 span{color:var(--gold)}
+.hero p{opacity:.85;max-width:44ch;margin-bottom:30px;font-size:19px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chips b{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-weight:500;font-size:15px}
+.art{width:100%;max-width:400px;margin:0 auto;display:block}
+.steam{stroke:#fff;stroke-width:7;stroke-linecap:round;fill:none;opacity:0;animation:rise 3.2s ease-in-out infinite}
+.steam:nth-of-type(2){animation-delay:.9s}.steam:nth-of-type(3){animation-delay:1.8s}
+@keyframes rise{0%{opacity:0;transform:translateY(14px)}40%{opacity:.8}100%{opacity:0;transform:translateY(-22px)}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:70px;display:block}
+.wave path{fill:var(--bg)}
+section{padding:70px 0}
+.kicker{display:inline-block;background:var(--gold);color:#0F3D2E;font-weight:600;font-size:15px;padding:4px 14px;border-radius:999px;margin-bottom:14px}
+h2.t{font:400 clamp(32px,5vw,52px)/1.08 'Young Serif',serif;margin-bottom:34px}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.mc{background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line);transition:transform .2s,box-shadow .2s}
+.mc:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(15,61,46,.15)}
+.mh{padding:22px 24px;font:400 28px 'Young Serif',serif;display:flex;justify-content:space-between;align-items:center;color:#0F3D2E}
+.mh i{font-style:normal;font-size:38px}
+.mc ul{padding:14px 24px 20px}
+.mc li{list-style:none;display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line)}
+.mc li:last-child{border:0}.mc li b{font-weight:500}.mc li span{font-weight:600;color:var(--coral)}
+.band{background:var(--gold);color:#0F3D2E;padding:60px 0}
+.band h2.t{margin-bottom:28px}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gal div{aspect-ratio:1;border-radius:22px;display:grid;place-items:center;font-size:64px;position:relative;transition:transform .25s}
+.gal div:hover{transform:rotate(-3deg) scale(1.04)}
+.gal small{position:absolute;bottom:12px;left:14px;font:600 15px Outfit;color:#fff}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.q{background:var(--card);border-radius:22px;padding:26px;border:1px solid var(--line)}
+.q p{margin:8px 0 14px}.q b{color:var(--soft);font-weight:500}.stars{color:var(--gold);letter-spacing:3px;font-size:20px}
+.visit{background:var(--green);color:var(--chalk);border-radius:30px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:70px}
+.hours{width:100%;border-collapse:collapse;margin:12px 0 18px}
+.hours td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.18)}.hours td:last-child{text-align:right;font-weight:500;color:var(--gold)}
+label{display:block;font-weight:500;margin:14px 0 6px}
+input,select{width:100%;font:inherit;color:#fff;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:12px}
+select option{color:#000}
+input:focus,select:focus{border-color:var(--gold);outline:none}
+#ok{margin-top:16px;padding:14px;border-radius:12px;background:var(--gold);color:#0F3D2E;font-weight:500}
+footer{padding:0 0 36px;color:var(--soft);font-size:15px;text-align:center}
+@media(max-width:800px){.hero,.visit,.menu,.quotes{grid-template-columns:1fr}.gal{grid-template-columns:repeat(2,1fr)}.visit{padding:28px}.hero{padding-bottom:90px}nav ul{gap:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.steam{animation:none;opacity:.6}.btn,.mc,.gal div{transition:none}}
+</style>
+</head>
+<body>
+<div class="top">
+<div class="wrap">
+<nav><a class="brand" href="#top">Marigold Corner</a>
+<ul><li><a href="#menu">Menu</a></li><li><a href="#love">Reviews</a></li><li><a href="#reserve" class="btn" style="padding:10px 20px;font-size:16px">Reserve</a></li></ul></nav>
+<header class="hero" id="top">
+<div>
+<h1>Slow coffee on a <span>fast</span> street.</h1>
+<p>A cosy neighbourhood café in Pune. Single-origin coffee, bakes from our own oven, and lunch that tastes like home.</p>
+<a class="btn" href="#reserve">Reserve a table</a> &nbsp; <a class="btn ghost" href="#menu">See the menu</a>
+<div class="chips"><b>Open 8 am – 9 pm</b><b>Free Wi-Fi</b><b>Pet friendly</b></div>
+</div>
+<svg class="art" viewBox="0 0 320 300" role="img" aria-label="Illustration of a steaming coffee cup">
+<circle cx="160" cy="150" r="130" fill="#F2B632"/>
+<circle cx="160" cy="150" r="100" fill="#F7CB5E"/>
+<path class="steam" d="M130 100c-18-20 18-32 0-55"/><path class="steam" d="M165 100c-18-20 18-32 0-55"/><path class="steam" d="M200 100c-18-20 18-32 0-55"/>
+<ellipse cx="160" cy="250" rx="125" ry="18" fill="#F26B4F"/>
+<path d="M244 140c46-6 46 56-4 56" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
+<path d="M76 120h168v52a84 74 0 0 1-168 0z" fill="#fff"/>
+<ellipse cx="160" cy="120" rx="84" ry="15" fill="#fff"/><ellipse cx="160" cy="121" rx="70" ry="10" fill="#6B3E26"/>
+<path d="M130 122q30-6 60 0" stroke="#D9A672" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="120" cy="170" r="10" fill="#F2B632"/><circle cx="160" cy="190" r="10" fill="#F26B4F"/><circle cx="200" cy="170" r="10" fill="#0F3D2E"/>
+</svg>
+</header>
+</div>
+<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C240 80 480 0 720 30s480 50 720 0v40H0z"/></svg>
+</div>
+
+<main>
+<section id="menu"><div class="wrap">
+<span class="kicker">Fresh daily</span>
+<h2 class="t">What we serve</h2>
+<div class="menu">
+<div class="mc"><div class="mh" style="background:#F2B632">Coffee<i>☕</i></div><ul>
+<li><b>Espresso</b><span>₹110</span></li><li><b>Flat white</b><span>₹170</span></li><li><b>Cardamom latte</b><span>₹180</span></li><li><b>Cold brew</b><span>₹190</span></li></ul></div>
+<div class="mc"><div class="mh" style="background:#F26B4F;color:#fff">Bakes<i>🥐</i></div><ul>
+<li><b>Butter croissant</b><span>₹120</span></li><li><b>Cinnamon roll</b><span>₹150</span></li><li><b>Brownie</b><span>₹130</span></li><li><b>Lemon tart</b><span>₹160</span></li></ul></div>
+<div class="mc"><div class="mh" style="background:#0F3D2E;color:#F6F8F3">Lunch<i>🥪</i></div><ul>
+<li><b>Paneer pesto sandwich</b><span>₹260</span></li><li><b>Mushroom toast</b><span>₹240</span></li><li><b>Garden salad bowl</b><span>₹280</span></li><li><b>Mac and cheese</b><span>₹290</span></li></ul></div>
+</div></div></section>
+
+<div class="band"><div class="wrap">
+<h2 class="t">A peek inside</h2>
+<div class="gal">
+<div style="background:#0F3D2E">🌿<small>Garden corner</small></div>
+<div style="background:#F26B4F">🍰<small>Baked at 7 am</small></div>
+<div style="background:#6B3E26">🫘<small>Roasted weekly</small></div>
+<div style="background:#2F6F8F">📚<small>Reading shelf</small></div>
+</div></div></div>
+
+<section id="love"><div class="wrap">
+<span class="kicker">Kind words</span>
+<h2 class="t">Loved by the neighbourhood</h2>
+<div class="quotes">
+<div class="q"><div class="stars">★★★★★</div><p>The cardamom latte is the reason I work from here every Friday.</p><b>Aisha, designer</b></div>
+<div class="q"><div class="stars">★★★★★</div><p>Warm croissants, friendly staff, and a corner seat with real sunlight.</p><b>Rohan, student</b></div>
+<div class="q"><div class="stars">★★★★★</div><p>We brought our dog and he got his own water bowl. We will be back.</p><b>Meera, regular</b></div>
+</div></div></section>
+
+<div class="wrap">
+<div class="visit" id="reserve">
+<div>
+<h2 class="t" style="color:var(--gold)">Come by</h2>
+<p>14 Lane 5, Koregaon Park, Pune</p>
+<table class="hours"><tr><td>Monday to Friday</td><td>8 am – 9 pm</td></tr><tr><td>Saturday</td><td>8 am – 11 pm</td></tr><tr><td>Sunday</td><td>9 am – 8 pm</td></tr></table>
+<p style="opacity:.8">Walk-ins are always welcome. Reserve for groups of 5 or more.</p>
+</div>
+<div>
+<h2 class="t" style="color:var(--gold)">Reserve a table</h2>
+<form id="f">
+<label for="n">Name</label><input id="n" required autocomplete="name">
+<label for="d">Date</label><input id="d" type="date" required>
+<label for="g">Guests</label>
+<select id="g"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+<p style="margin-top:22px"><button class="btn" type="submit">Request table</button></p>
+</form>
+<p id="ok" role="status" hidden></p>
+</div>
+</div>
+</div>
+</main>
+<footer>© 2026 Marigold Corner Café. Sample project by Your Name.</footer>
+<script>
+document.getElementById('f').addEventListener('submit',function(e){
+e.preventDefault();
+var o=document.getElementById('ok');
+o.textContent='Thanks '+document.getElementById('n').value+'. We have your request for '+document.getElementById('g').value+' guests on '+document.getElementById('d').value+' and will confirm shortly.';
+o.hidden=false;
+});
+</script>
+</body>
+</html>
