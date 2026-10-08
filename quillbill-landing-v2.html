@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quillbill: invoices for freelancers</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F7FB;--panel:#FFFFFF;--ink:#0F1B3D;--soft:#55608A;--blue:#3B54FF;--violet:#8B5CF6;--coral:#FF6B4A;--mint:#1E9E6A;--line:#DDE3F1;--onblue:#FFFFFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1024;--panel:#131C3A;--ink:#EEF1FF;--soft:#A3AEDB;--line:#27345F}}
+:root[data-theme="dark"]{--bg:#0A1024;--panel:#131C3A;--ink:#EEF1FF;--soft:#A3AEDB;--line:#27345F}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.hero-bg{background:linear-gradient(135deg,#3B54FF 0%,#6D4CFF 55%,#8B5CF6 100%);color:#fff;position:relative;overflow:hidden;border-radius:0 0 40px 40px}
+.hero-bg::before,.hero-bg::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.1)}
+.hero-bg::before{width:420px;height:420px;right:-120px;top:-140px}
+.hero-bg::after{width:260px;height:260px;left:-80px;bottom:-100px}
+.in{position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:12px}
+.logo{font-weight:800;font-size:24px;text-decoration:none;color:#fff}
+nav a.link{color:rgba(255,255,255,.85);text-decoration:none;font-weight:500;margin-right:22px}
+nav a.link:hover{color:#fff}
+.btn{display:inline-block;background:var(--blue);color:#fff;font:700 16px Manrope,sans-serif;padding:14px 26px;border-radius:12px;border:0;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(59,84,255,.35)}
+.btn.w{background:#fff;color:#3B2FD6}
+.btn.o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:40px 0 100px}
+.pill{display:inline-block;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:999px;font-weight:700;font-size:14px;margin-bottom:18px}
+h1{font:800 clamp(38px,6vw,66px)/1.04 Manrope,sans-serif;letter-spacing:-.03em;margin-bottom:18px}
+.lead{opacity:.9;max-width:42ch;margin-bottom:28px;font-size:19px}
+.stage{position:relative;padding:20px 10px}
+.demo{background:var(--panel);color:var(--ink);border-radius:20px;padding:26px;box-shadow:0 30px 60px rgba(10,16,60,.35);transform:rotate(2deg);animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:rotate(2deg) translateY(-10px)}}
+.demo h2{font-size:15px;font-weight:700;color:var(--soft);margin-bottom:14px}
+.row{display:flex;gap:14px}.row>div{flex:1}
+label{display:block;font-size:14px;font-weight:500;color:var(--soft);margin-bottom:6px}
+input[type=number],input[type=text]{width:100%;font:inherit;font-weight:700;color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:10px;padding:10px}
+input:focus{border-color:var(--blue);outline:none}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:20px 0 14px;padding-top:16px;border-top:2px dashed var(--line)}
+.total b{font-size:40px;font-weight:800;letter-spacing:-.02em;color:var(--blue)}
+:root[data-theme="dark"] .total b{color:#9DB0FF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .total b{color:#9DB0FF}}
+.status{display:inline-block;border-radius:999px;padding:5px 14px;font-size:14px;font-weight:700;background:var(--coral);color:#fff;margin-left:8px}
+.status.sent{background:var(--mint)}
+.badge{position:absolute;right:-6px;top:-4px;background:var(--mint);color:#fff;font-weight:800;padding:10px 16px;border-radius:14px;box-shadow:0 12px 24px rgba(0,0,0,.25);transform:rotate(-6deg)}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;padding:40px 0 10px;color:var(--soft);font-weight:800;font-size:19px}
+.logos span:first-child{font-weight:500;font-size:15px;flex-basis:100%;text-align:center}
+section{padding:70px 0}
+.kick{color:var(--blue);font-weight:800;margin-bottom:8px}
+:root[data-theme="dark"] .kick{color:#9DB0FF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kick{color:#9DB0FF}}
+h2.t{font:800 clamp(30px,4.6vw,44px)/1.1 Manrope;letter-spacing:-.02em;margin-bottom:12px}
+.sub{color:var(--soft);margin-bottom:40px;max-width:52ch}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px}
+.stats b{display:block;font-size:46px;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,#3B54FF,#8B5CF6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats span{color:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#3B54FF,#8B5CF6);color:#fff;font-weight:800;margin-bottom:14px}
+.steps b{display:block;font-size:20px;margin-bottom:4px}.steps span{color:var(--soft)}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feat{display:flex;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;transition:transform .2s,box-shadow .2s}
+.feat:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(59,84,255,.16)}
+.ic{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px}
+.feat b{display:block;font-size:19px}.feat span{color:var(--soft)}
+.toggle{display:inline-flex;border:2px solid var(--line);border-radius:999px;padding:4px;margin-bottom:28px;background:var(--panel)}
+.toggle button{font:700 15px Manrope;border:0;background:transparent;color:var(--soft);padding:9px 20px;border-radius:999px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;position:relative}
+.plan.pick{background:linear-gradient(160deg,#3B54FF,#8B5CF6);color:#fff;border:0;transform:scale(1.04);box-shadow:0 24px 50px rgba(59,84,255,.35)}
+.plan.pick li,.plan.pick small{color:rgba(255,255,255,.88)}
+.tag{position:absolute;top:-13px;right:20px;background:var(--coral);color:#fff;font-weight:800;font-size:13px;padding:5px 12px;border-radius:999px}
+.plan h3{font-size:18px}.price{font-size:44px;font-weight:800;margin:8px 0;letter-spacing:-.02em}.price small{font-size:15px;color:var(--soft);font-weight:500}
+.plan ul{padding:0 0 0 18px;color:var(--soft);margin:12px 0 22px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:12px}
+summary{font-weight:700;cursor:pointer}details p{color:var(--soft);margin-top:10px;max-width:60ch}
+.cta{background:linear-gradient(135deg,#3B54FF,#8B5CF6);color:#fff;border-radius:32px;text-align:center;padding:64px 24px;margin:20px 0 60px}
+.cta p{opacity:.9;margin:0 auto 26px}
+footer{padding:0 0 36px;color:var(--soft);font-size:15px;text-align:center}
+@media(max-width:800px){.hero,.steps,.plans,.feats,.stats{grid-template-columns:1fr}nav a.link{display:none}.plan.pick{transform:none}.hero{padding-bottom:70px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.demo{animation:none}.btn,.feat{transition:none}}
+</style>
+</head>
+<body>
+<div class="hero-bg"><div class="wrap in">
+<nav><a class="logo" href="#top">✒️ Quillbill</a><div><a class="link" href="#features">Features</a><a class="link" href="#pricing">Pricing</a><a class="btn w" href="#pricing">Start free</a></div></nav>
+<header class="hero" id="top">
+<div>
+<span class="pill">Built for freelancers</span>
+<h1>Send the invoice. Get paid on time.</h1>
+<p class="lead">Create professional invoices in a minute, then let Quillbill remind your clients until the money lands.</p>
+<a class="btn w" href="#pricing">Start free</a> &nbsp; <a class="btn o" href="#how">See how it works</a>
+</div>
+<div class="stage">
+<div class="badge">Paid ✓</div>
+<div class="demo" aria-label="Invoice demo">
+<h2>Try it: build an invoice</h2>
+<label for="c">Client</label><input id="c" type="text" value="Brightside Studio">
+<div class="row" style="margin-top:14px">
+<div><label for="h">Hours</label><input id="h" type="number" min="0" value="12"></div>
+<div><label for="r">Rate (₹/hour)</label><input id="r" type="number" min="0" value="800"></div>
+</div>
+<div class="total"><span>Total due</span><b id="t">₹9,600</b></div>
+<button class="btn" id="s" type="button">Send invoice</button><span class="status" id="st">Draft</span>
+</div>
+</div>
+</header>
+</div></div>
+
+<main class="wrap">
+<div class="logos"><span>Trusted by 12,000+ freelancers</span><span>Pixelwave</span><span>Northkite</span><span>Lumo Labs</span><span>Studio Oak</span></div>
+
+<section>
+<div class="stats">
+<div><b>3x</b><span>faster than spreadsheets</span></div>
+<div><b>92%</b><span>of invoices paid on time</span></div>
+<div><b>1 min</b><span>to send your first invoice</span></div>
+</div>
+</section>
+
+<section id="how">
+<div class="kick">How it works</div>
+<h2 class="t">From work done to money received</h2>
+<p class="sub">Three steps, no accounting degree needed.</p>
+<ol class="steps">
+<li><b>Add your work</b><span>Enter hours or fixed prices. Tax is calculated for you.</span></li>
+<li><b>Send a payment link</b><span>Clients pay by UPI, card, or bank transfer.</span></li>
+<li><b>Let reminders chase</b><span>Polite follow-ups go out until the invoice is paid.</span></li>
+</ol>
+</section>
+
+<section id="features">
+<div class="kick">Features</div>
+<h2 class="t">Everything a solo business needs</h2>
+<p class="sub">Less admin, more billable hours.</p>
+<div class="feats">
+<div class="feat"><div class="ic" style="background:#E3E8FF">👥</div><div><b>Reusable clients</b><span>Save details once and create the next invoice in seconds.</span></div></div>
+<div class="feat"><div class="ic" style="background:#FFE6DF">⏰</div><div><b>Automatic reminders</b><span>Set the schedule once. Late payers get a nudge.</span></div></div>
+<div class="feat"><div class="ic" style="background:#DDF5E9">📊</div><div><b>Income dashboard</b><span>See what is paid, pending, and overdue this month.</span></div></div>
+<div class="feat"><div class="ic" style="background:#EBE2FF">🧾</div><div><b>Tax-ready exports</b><span>Download every invoice as a clean spreadsheet.</span></div></div>
+</div>
+</section>
+
+<section id="pricing">
+<div class="kick">Pricing</div>
+<h2 class="t">Simple pricing</h2>
+<div class="toggle" role="group" aria-label="Billing period">
+<button id="bm" aria-pressed="true">Monthly</button><button id="by" aria-pressed="false">Yearly, save 20%</button></div>
+<div class="plans">
+<div class="plan"><h3>Starter</h3><div class="price">₹0</div><ul><li>3 invoices a month</li><li>1 payment link</li></ul><a class="btn alt" href="#top">Start free</a></div>
+<div class="plan pick"><span class="tag">Most popular</span><h3>Pro</h3><div class="price"><span class="p" data-m="499" data-y="399">₹499</span><small> /month</small></div><ul><li>Unlimited invoices</li><li>Automatic reminders</li><li>Income dashboard</li></ul><a class="btn w" href="#top">Choose Pro</a></div>
+<div class="plan"><h3>Studio</h3><div class="price"><span class="p" data-m="1199" data-y="959">₹1,199</span><small> /month</small></div><ul><li>Everything in Pro</li><li>5 team members</li><li>Tax-ready exports</li></ul><a class="btn alt" href="#top">Choose Studio</a></div>
+</div>
+</section>
+
+<section>
+<h2 class="t">Questions</h2>
+<details><summary>Do my clients need an account?</summary><p>No. They open the payment link, pay, and get a receipt by email.</p></details>
+<details><summary>Can I cancel any time?</summary><p>Yes. Downgrade to Starter whenever you like and keep all your invoices.</p></details>
+<details><summary>Does Quillbill handle GST?</summary><p>You can add GST details and rates to every invoice. Confirm filing rules with your accountant.</p></details>
+</section>
+
+<div class="cta">
+<h2 class="t">Your next invoice takes one minute.</h2>
+<p>Create a free account. No card needed.</p>
+<a class="btn w" href="#top">Start free</a>
+</div>
+</main>
+<footer>© 2026 Quillbill. Sample project by Your Name.</footer>
+<script>
+var h=document.getElementById('h'),r=document.getElementById('r'),t=document.getElementById('t'),s=document.getElementById('s'),st=document.getElementById('st');
+function calc(){var v=(+h.value||0)*(+r.value||0);t.textContent='₹'+v.toLocaleString('en-IN');st.textContent='Draft';st.className='status'}
+h.oninput=r.oninput=document.getElementById('c').oninput=calc;
+s.onclick=function(){st.textContent='Sent to '+document.getElementById('c').value;st.className='status sent'};
+var bm=document.getElementById('bm'),by=document.getElementById('by');
+function price(y){bm.setAttribute('aria-pressed',!y);by.setAttribute('aria-pressed',y);
+document.querySelectorAll('.p').forEach(function(e){e.textContent='₹'+(+e.dataset[y?'y':'m']).toLocaleString('en-IN')})}
+bm.onclick=function(){price(false)};by.onclick=function(){price(true)};
+</script>
+</body>
+</html>
